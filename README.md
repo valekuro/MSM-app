@@ -1,4 +1,4 @@
-APP PER FARE LA SPESA ONLINE.
+APP PER LA SPESA ONLINE.
 
 L'app nasce da un progetto universitario che prevedeva lo studio dell' UX/UI design ed è stata realizzata con react native versione 0.65.1.
 
