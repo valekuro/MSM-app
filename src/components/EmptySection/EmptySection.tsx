@@ -3,7 +3,13 @@
  * year: 2021
  */
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  GestureResponderEvent,
+} from 'react-native';
 import PersonalizedButton from '../PersonalizedButton';
 import theme from '../Theme';
 
@@ -16,6 +22,8 @@ interface EmptySectionProps {
   showSecondaryButton: boolean;
   secondaryButtonLabel?: string;
   secondaryButtonDisabled?: any;
+  onPressPrimaryButton?: ((event: GestureResponderEvent) => void) | undefined;
+  onPressSecondaryButton?: ((event: GestureResponderEvent) => void) | undefined;
 }
 
 /**
@@ -28,7 +36,9 @@ interface EmptySectionProps {
  * @param showSecondaryButton -- if you need another button
  * @param secondaryButtonLabel -- secondary button label
  * @param secondaryButtonDisabled -- Is button disabled?
- * @returns 
+ * @param onPressPrimaryButton -- primary button event
+ * @param onPressSecondaryButton -- secondary button event
+ * @returns
  */
 export default function EmptySection({
   icon,
@@ -39,6 +49,8 @@ export default function EmptySection({
   secondaryButtonLabel,
   primaryButtonDisabled,
   secondaryButtonDisabled,
+  onPressPrimaryButton,
+  onPressSecondaryButton,
 }: EmptySectionProps) {
   return (
     <View style={emptySectionStyles.emptySectionContainer}>
@@ -50,14 +62,14 @@ export default function EmptySection({
       {buttonLabel && (
         <PersonalizedButton
           label={buttonLabel}
-          onPress={() => console.log('cioa')}
+          onPress={onPressPrimaryButton}
           disabled={primaryButtonDisabled ? primaryButtonDisabled : false}
         />
       )}
       {showSecondaryButton && secondaryButtonLabel && (
         <PersonalizedButton
           label={secondaryButtonLabel}
-          onPress={() => console.log('cioa')}
+          onPress={onPressSecondaryButton}
           disabled={secondaryButtonDisabled}
         />
       )}
@@ -68,8 +80,7 @@ export default function EmptySection({
 const emptySectionStyles = StyleSheet.create({
   emptySectionContainer: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     alignContent: 'center',
     alignItems: 'center',
   },

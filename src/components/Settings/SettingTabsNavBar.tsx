@@ -11,7 +11,7 @@ import User from '../User';
 const Tab = createMaterialTopTabNavigator();
 /**
  * setting tab navigation bar
- * @returns 
+ * @returns
  */
 export default function SettingTabsNavBar() {
   return (
@@ -23,9 +23,9 @@ export default function SettingTabsNavBar() {
           borderBottomColor: theme.colors.darkOrange,
           backgroundColor: theme.colors.lightOrange,
         },
-        indicatorStyle: {
-          color: 'red',
-        },
+        tabBarIndicatorStyle:{
+          backgroundColor: theme.colors.darkOrange,
+        }
       })}>
       <Tab.Screen name="Utente" component={User} />
       <Tab.Screen name="Gruppo" component={Settings} />

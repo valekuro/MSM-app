@@ -10,6 +10,8 @@ import TapIcons from '../TapIcons';
 import theme from '../Theme';
 import {faHeart as fullHeart} from '@fortawesome/free-solid-svg-icons';
 import {faHeart as emptyHeart} from '@fortawesome/free-regular-svg-icons';
+import {useAppDispatch} from '../../store/hook';
+import {addElement} from '../../reducers/RedList';
 
 /**
  * item details component
@@ -19,6 +21,8 @@ import {faHeart as emptyHeart} from '@fortawesome/free-regular-svg-icons';
 export default function ItemDetails(data: Array<any>) {
   const itemData: Array<any> = data.route.params.params;
   const [isTapped, setIsTapped] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+
   return (
     <View style={{flex: 1, justifyContent: 'space-evenly'}}>
       <View style={itemDetailsStyles.imageItemDetailsContainer}>
@@ -44,7 +48,7 @@ export default function ItemDetails(data: Array<any>) {
         <MyText children={`€ ${itemData.prezzo}`} />
         <PersonalizedButton
           label={'+ Aggiungi alla lista'}
-          onPress={() => console.log('cioa')}
+          onPress={() => dispatch(addElement(itemData))}
           disabled={false}
           width={200}
         />

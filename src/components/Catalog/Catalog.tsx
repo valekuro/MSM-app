@@ -26,7 +26,7 @@ export default function Catalog() {
             data={category.title}
             arrowIcon={faChevronRight}
             onPress={() =>
-              navigation.navigate('NomeCategoria', {
+              navigation.navigate('Prodotti', {
                 screen: 'Catalog',
                 params: category.subCategories,
               })

@@ -26,11 +26,12 @@ interface SingleItemMenuListProps {
   arrowIcon?: any;
   colorAdornment?: string;
   cartIconVisibility?: boolean;
+  textUnderArrow?: string;
   onPress: ((event: GestureResponderEvent) => void) | null | undefined;
 }
 /**
  *  the component manages the single list's item.
- * @param label 
+ * @param label
  * @param data
  * @param otherData
  * @param arrowIcon
@@ -39,7 +40,8 @@ interface SingleItemMenuListProps {
  * @param startImageAdornment
  * @param cartIconVisibility
  * @param onPress
- * @returns 
+ * @param textUnderArrow
+ * @returns
  */
 export default function SingleItemList({
   label,
@@ -50,6 +52,7 @@ export default function SingleItemList({
   colorAdornment,
   startImageAdornment,
   cartIconVisibility,
+  textUnderArrow,
   onPress,
 }: SingleItemMenuListProps) {
   const [isTapped, setIsTapped] = useState<boolean>(false);
@@ -94,6 +97,7 @@ export default function SingleItemList({
               style={{color: `${theme.colors.darkOrange}`}}
             />
           )}
+          {textUnderArrow ? <MyText children={textUnderArrow} /> : null}
         </View>
       </View>
     </Pressable>

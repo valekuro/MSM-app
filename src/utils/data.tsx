@@ -49,7 +49,7 @@ export const userMenu = [
   },
 ];
 
-export const categories = [
+export let categories = [
   {
     title: 'Preferiti',
     categoryImage: require('../assets/images/Categories/preferiti.png'),

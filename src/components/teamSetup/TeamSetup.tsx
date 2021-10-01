@@ -64,13 +64,47 @@ export default function TeamSetup() {
         tabBarActiveTintColor: `${theme.colors.darkOrange}`,
         tabBarInactiveTintColor: 'black',
       })}>
-      <Tab.Screen name="Settings" component={SettingTabsNavBar} />
-      <Tab.Screen name="Catalog" component={Catalog} />
-      <Tab.Screen name="Lista" component={List} />
+      <Tab.Screen
+        name="Settings"
+        component={SettingTabsNavBar}
+        options={{
+          headerStyle: {
+            backgroundColor: theme.colors.lightOrange,
+          },
+          tabBarLabel: 'Impostazioni',
+
+        }}
+      />
+      <Tab.Screen
+        name="Catalog"
+        component={Catalog}
+        options={{
+          headerStyle: {
+            backgroundColor: theme.colors.lightOrange,
+          },
+          tabBarLabel: 'Catalogo',
+        }}
+      />
+      <Tab.Screen
+        name="Lista"
+        component={List}
+        options={{
+          headerStyle: {
+            backgroundColor: theme.colors.lightOrange,
+          },
+          tabBarLabel: 'Lista',
+        }}
+      />
       <Tab.Screen
         name="Notifiche"
         component={Notify}
-        options={{tabBarBadge: 3}}
+        options={{
+          tabBarBadge: 3,
+          headerStyle: {
+            backgroundColor: theme.colors.lightOrange,
+          },
+          tabBarLabel: 'Notifiche',
+        }}
       />
     </Tab.Navigator>
   );
