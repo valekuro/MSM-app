@@ -8,14 +8,13 @@ export const RedList = createSlice({
       const AddQuantity = state.list.find(
         (item: object) => item.title === action.payload.title,
       );
-
+      //add quantity or add element?
       if (AddQuantity === undefined) {
         state.list.push({...action.payload, quantita: 1});
       } else {
         const newState = state.list.filter(
-          (item: object) => item.title !== action.payload,
+          (item: object) => item.title !== action.payload.title,
         );
-        console.log(newState);
         newState.push({
           ...action.payload,
           quantita: AddQuantity.quantita + 1,
@@ -24,10 +23,21 @@ export const RedList = createSlice({
       }
     },
     removeElement: (state, action) => {
-      const newState = state.list.filter(
-        (item: object) => item.title !== action.payload,
+      let newState;
+      const itemToDelete = state.list.filter(
+        (item: object) => item.title === action.payload,
       );
-      state.list = newState;
+      if (itemToDelete[0] && itemToDelete[0].quantita > 1) {
+        itemToDelete[0].quantita = itemToDelete[0].quantita - 1;
+        console.log(itemToDelete[0]);
+      } else {
+        newState = state.list.filter(
+          (item: object) => item.title !== action.payload,
+        );
+        state.list = newState;
+      }
+
+      //state.list = newState;
     },
   },
 });
