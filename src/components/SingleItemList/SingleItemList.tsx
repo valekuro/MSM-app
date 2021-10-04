@@ -56,6 +56,7 @@ export default function SingleItemList({
   onPress,
 }: SingleItemMenuListProps) {
   const [isTapped, setIsTapped] = useState<boolean>(false);
+
   return (
     <Pressable onPress={onPress}>
       <View style={singleItemMenuListStyle.singleItemMenuListContainer}>
@@ -80,7 +81,7 @@ export default function SingleItemList({
           <MyText children={data} />
           {otherData ? <MyText children={otherData} /> : null}
         </View>
-        {cartIconVisibility && (
+        {cartIconVisibility &&(
           <View style={{flex: 1}}>
             <TapIcons
               fullIcon={faTasks}

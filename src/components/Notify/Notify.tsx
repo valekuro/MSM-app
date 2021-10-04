@@ -1,10 +1,16 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-
+import {View, StyleSheet} from 'react-native';
+import EmptySection from '../EmptySection';
+import theme from '../Theme';
 export default function Notify() {
   return (
     <View style={notifyStyles.notifyContainer}>
-      <Text>notifiche</Text>
+      <EmptySection
+        icon={require('../../assets/images/wip.png')}
+        iconLabel={`Work in progress.\nLa scimmiette stanno sviluppando!\nRiprova tra qualche giorno!`}
+        showSecondaryButton={false}
+        dimension={220}
+      />
     </View>
   );
 }
@@ -12,9 +18,8 @@ export default function Notify() {
 const notifyStyles = StyleSheet.create({
   notifyContainer: {
     flex: 1,
+    justifyContent: 'space-around',
     flexDirection: 'column',
-    alignContent: 'center',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    backgroundColor: `${theme.colors.white}`,
   },
 });

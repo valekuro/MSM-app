@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {filterNotEqualTo} from '../utils/utilsFunctions';
 export const initialList: Array<object> = [];
 export const RedList = createSlice({
   name: 'RedList',
@@ -10,10 +11,12 @@ export const RedList = createSlice({
       );
       //add quantity or add element?
       if (AddQuantity === undefined) {
-        state.list.push({...action.payload, quantita: 1});
+        state.list.push({...action.payload, quantita: 1, like: false});
       } else {
-        const newState = state.list.filter(
-          (item: object) => item.title !== action.payload.title,
+        const newState = filterNotEqualTo(
+          state.list,
+          action.payload.title,
+          'title',
         );
         newState.push({
           ...action.payload,
@@ -31,9 +34,7 @@ export const RedList = createSlice({
       if (itemToDelete[0] && itemToDelete[0].quantita > 1) {
         itemToDelete[0].quantita = itemToDelete[0].quantita - 1;
       } else {
-        newState = state.list.filter(
-          (item: object) => item.title !== action.payload,
-        );
+        newState = filterNotEqualTo(state.list, action.payload, 'title');
         state.list = newState;
       }
     },

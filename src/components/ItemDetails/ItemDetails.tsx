@@ -2,16 +2,19 @@
  * author: Valentina D'Orazio
  * year: 2021
  */
-import React, {useState} from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Image, StyleSheet, Text} from 'react-native';
 import MyText from '../MyText';
 import PersonalizedButton from '../PersonalizedButton';
 import TapIcons from '../TapIcons';
 import theme from '../Theme';
+import {faClipboardCheck} from '@fortawesome/free-solid-svg-icons';
 import {faHeart as fullHeart} from '@fortawesome/free-solid-svg-icons';
 import {faHeart as emptyHeart} from '@fortawesome/free-regular-svg-icons';
-import {useAppDispatch} from '../../store/hook';
+import {useAppDispatch, useAppSelector} from '../../store/hook';
 import {addElement} from '../../reducers/RedList';
+import {useNavigation} from '@react-navigation/native';
+import {addFavourite, removeFavourite} from '../../reducers/FavouriteList';
 
 /**
  * item details component
@@ -21,7 +24,34 @@ import {addElement} from '../../reducers/RedList';
 export default function ItemDetails(data: Array<any>) {
   const itemData: Array<any> = data.route.params.params;
   const [isTapped, setIsTapped] = useState<boolean>(false);
+  const [itemFavourite, setItemFavourite] = useState<object>({});
+  const listFavState: Array<object> = useAppSelector(
+    state => state.FavouriteList,
+  );
   const dispatch = useAppDispatch();
+  const listState: Array<object> = useAppSelector(state => state.RedList);
+  const [isAddedToList, setIsAddedToList] = useState<boolean>(false);
+  const handleAddedToList = () => {
+    setIsAddedToList(true);
+    navigation.navigate('Lista');
+  };
+  const navigation = useNavigation();
+  const handleManageLike = () => {
+    setItemFavourite(itemData);
+    setIsTapped(!isTapped);
+  };
+  useEffect(() => {
+    let isLike: boolean = listFavState?.list.find(
+      item => itemData.title === item.title,
+    );
+    isLike ? setIsTapped(true) : setIsTapped(false);
+  }, [dispatch, listFavState?.list]);
+
+  useEffect(() => {
+    isTapped
+      ? dispatch(addFavourite(itemFavourite))
+      : dispatch(removeFavourite(itemFavourite));
+  }, [isTapped, itemFavourite]);
 
   return (
     <View style={{flex: 1, justifyContent: 'space-evenly'}}>
@@ -34,7 +64,7 @@ export default function ItemDetails(data: Array<any>) {
           fullIcon={fullHeart}
           emptyIcon={emptyHeart}
           isTapped={isTapped}
-          onPress={() => setIsTapped(!isTapped)}
+          onPress={() => handleManageLike()}
         />
       </View>
       <View
@@ -46,6 +76,15 @@ export default function ItemDetails(data: Array<any>) {
           alignContent: 'center',
         }}>
         <MyText children={`€ ${itemData.prezzo}`} />
+        {listState.list &&
+          listState.list.find(el => el.title === itemData.title) && (
+            <TapIcons
+              fullIcon={faClipboardCheck}
+              emptyIcon={faClipboardCheck}
+              isTapped={isAddedToList}
+              onPress={() => handleAddedToList()}
+            />
+          )}
         <PersonalizedButton
           label={'+ Aggiungi alla lista'}
           onPress={() => dispatch(addElement(itemData))}
