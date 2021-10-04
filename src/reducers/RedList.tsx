@@ -27,17 +27,15 @@ export const RedList = createSlice({
       const itemToDelete = state.list.filter(
         (item: object) => item.title === action.payload,
       );
+      //remove quantity or remove element?
       if (itemToDelete[0] && itemToDelete[0].quantita > 1) {
         itemToDelete[0].quantita = itemToDelete[0].quantita - 1;
-        console.log(itemToDelete[0]);
       } else {
         newState = state.list.filter(
           (item: object) => item.title !== action.payload,
         );
         state.list = newState;
       }
-
-      //state.list = newState;
     },
   },
 });

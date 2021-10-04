@@ -21,7 +21,7 @@ import theme from './src/components/Theme';
 type RootStackParamList = {
   Prodotti: {data: any[]};
   Login: undefined;
-  Impostazioni: undefined;
+  Settings: undefined;
   Dettagli: undefined;
 };
 
@@ -38,7 +38,7 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Impostazioni"
+            name="Settings"
             component={TeamSetup}
             options={{headerShown: false}}
           />

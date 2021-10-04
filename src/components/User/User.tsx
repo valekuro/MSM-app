@@ -28,7 +28,7 @@ export default function User() {
             startIconAdornment={item.icon}
             arrowIcon={faChevronRight}
             colorAdornment={item.iconColor}
-            onPress={() => console.log('AAAAAAAAAAAAAAAA')}
+            onPress={() => console.log('toDo')}
           />
         )}
         style={userStyle.listMenuItem}

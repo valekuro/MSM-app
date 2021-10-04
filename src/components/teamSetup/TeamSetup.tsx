@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SettingTabsNavBar from '../Settings/SettingTabsNavBar';
 import Notify from '../Notify';
@@ -13,7 +12,6 @@ import {
   faCog,
 } from '@fortawesome/free-solid-svg-icons';
 import List from '../List';
-import CategoryItems from '../CategoryItems';
 export default function TeamSetup() {
   const Tab = createBottomTabNavigator();
 
@@ -49,7 +47,7 @@ export default function TeamSetup() {
                   }}
                 />
               );
-            case 'Settings':
+            case 'Impostazioni':
               return (
                 <FontAwesomeIcon
                   icon={faCog}
@@ -63,16 +61,20 @@ export default function TeamSetup() {
         },
         tabBarActiveTintColor: `${theme.colors.darkOrange}`,
         tabBarInactiveTintColor: 'black',
+        tabBarActiveBackgroundColor: `${theme.colors.lightOrange}`,
+        tabBarInactiveBackgroundColor: `${theme.colors.lightOrange}`,
+        tabBarIndicatorStyle: {
+          backgroundColor: `${theme.colors.darkOrange}`,
+        },
       })}>
       <Tab.Screen
-        name="Settings"
+        name="Impostazioni"
         component={SettingTabsNavBar}
         options={{
           headerStyle: {
             backgroundColor: theme.colors.lightOrange,
           },
           tabBarLabel: 'Impostazioni',
-
         }}
       />
       <Tab.Screen

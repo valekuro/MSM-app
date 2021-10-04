@@ -49,7 +49,7 @@ export default function Login() {
           <View style={{marginTop: 45}}>
             <PersonalizedButton
               label={'Registrati'}
-              onPress={() => navigation.navigate('Impostazioni')}
+              onPress={() => navigation.navigate('Settings')}
               disabled={false}
             />
           </View>
