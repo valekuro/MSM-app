@@ -23,21 +23,22 @@ export default function Catalog() {
   return (
     <ScrollView style={catalogStyles.catalogContainer}>
       {categories.map((category: any, key: number) => {
-        console.log(listFavState.list);
         if (category.title === 'Preferiti') {
           return (
-            <SingleItemList
-              key={key}
-              startImageAdornment={category.categoryImage}
-              data={category.title}
-              arrowIcon={faChevronRight}
-              onPress={() =>
-                navigation.navigate('Prodotti', {
-                  screen: 'Catalog',
-                  params: listFavState.list,
-                })
-              }
-            />
+            listFavState.list.length !== 0 && (
+              <SingleItemList
+                key={key}
+                startImageAdornment={category.categoryImage}
+                data={category.title}
+                arrowIcon={faChevronRight}
+                onPress={() =>
+                  navigation.navigate('Prodotti', {
+                    screen: 'Catalog',
+                    params: listFavState.list,
+                  })
+                }
+              />
+            )
           );
         } else {
           return (
