@@ -27,12 +27,15 @@ interface SingleItemMenuListProps {
   secondaryIcon?: IconDefinition | undefined;
   colorAdornment?: string;
   cartIconVisibility?: boolean;
+  fullCartIcon?: IconDefinition | undefined;
+  emptyCartIcon?: IconDefinition | undefined;
   textUnderArrow?: string;
   onPress: ((event: GestureResponderEvent) => void) | null | undefined;
   onPressSecondaryIcon?:
     | ((event: GestureResponderEvent) => void)
     | null
     | undefined;
+  onPressCartIcon?: ((event: GestureResponderEvent) => void) | null | undefined;
 }
 /**
  *  the component manages the single list's item.
@@ -48,6 +51,9 @@ interface SingleItemMenuListProps {
  * @param textUnderArrow -- if you want a word under the arrow (or other) icon on the right
  * @param secondaryIcon
  * @param onPressSecondaryIcon
+ * @param fullCartIcon
+ * @param emptyCartIcon
+ * @param onPressCartIcon
  * @returns
  */
 export default function SingleItemList({
@@ -61,8 +67,11 @@ export default function SingleItemList({
   cartIconVisibility,
   textUnderArrow,
   secondaryIcon,
+  emptyCartIcon,
+  fullCartIcon,
   onPressSecondaryIcon,
   onPress,
+  onPressCartIcon,
 }: SingleItemMenuListProps) {
   const [isTapped, setIsTapped] = useState<boolean>(false);
 
@@ -93,10 +102,10 @@ export default function SingleItemList({
         {cartIconVisibility && (
           <View style={{flex: 1}}>
             <TapIcons
-              fullIcon={faTasks}
-              emptyIcon={faShoppingCart}
+              fullIcon={fullCartIcon || faTasks}
+              emptyIcon={emptyCartIcon || faShoppingCart}
               isTapped={isTapped}
-              onPress={() => setIsTapped(!isTapped)}
+              onPress={onPressCartIcon}
             />
           </View>
         )}

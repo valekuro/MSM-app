@@ -44,7 +44,6 @@ export default function List() {
                 startImageAdornment={el.image}
                 data={el.title}
                 otherData={`quantità: ${el.quantita.toString()} \nprezzo: € ${el.prezzo}`}
-                //textUnderArrow={`€ ${el.prezzo}`}
                 arrowIcon={faMinus}
                 cartIconVisibility={false}
                 secondaryIcon={faPlus}

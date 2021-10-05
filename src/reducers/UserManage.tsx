@@ -5,7 +5,6 @@ export const UserManage = createSlice({
   initialState: initialUser,
   reducers: {
     addUser: (state, action) => {
-      console.log(action.payload);
       state.user = action.payload;
     },
   },

@@ -9,7 +9,9 @@ import {View, StyleSheet} from 'react-native';
 import EmptySection from '../EmptySection';
 import {useNavigation} from '@react-navigation/native';
 import theme from '../Theme';
-import {isEmpty} from 'lodash';
+import {useAppSelector, useAppDispatch} from '../../store/hook';
+import {faShoppingCart, faTasks} from '@fortawesome/free-solid-svg-icons';
+import {addElement, removeElement} from '../../reducers/RedList';
 
 /**
  * The component manages items list for each category
@@ -19,6 +21,18 @@ import {isEmpty} from 'lodash';
 export default function CategoryItems(data: Array<any>) {
   const itemData: Array<any> = data.route.params.params;
   const navigation = useNavigation();
+  const listState: Array<object> = useAppSelector(state => state.RedList);
+  const dispatch = useAppDispatch();
+  const findIfIsInList = (item: object) => {
+    let foundItem = listState.list.find(el => el.title === item);
+    let foundBool: boolean;
+    foundItem ? (foundBool = true) : (foundBool = false);
+    return foundBool;
+  };
+  const handleCartIcon = (el: object) => {
+    const found: boolean = findIfIsInList(el.title);
+    !found ? dispatch(addElement(el)) : dispatch(removeElement(el.title));
+  };
   return (
     <View style={{flex: 1}}>
       {Object.keys(itemData[0]).length !== 0 ? (
@@ -33,6 +47,13 @@ export default function CategoryItems(data: Array<any>) {
                   otherData={`€ ${el.prezzo}`}
                   arrowIcon={faChevronRight}
                   cartIconVisibility={true}
+                  fullCartIcon={
+                    !findIfIsInList(el.title) ? faTasks : faShoppingCart
+                  }
+                  emptyCartIcon={
+                    !findIfIsInList(el.title) ? faShoppingCart : faTasks
+                  }
+                  onPressCartIcon={() => handleCartIcon(el)}
                   onPress={() =>
                     navigation.navigate('Dettagli', {
                       screen: 'Catalogo',

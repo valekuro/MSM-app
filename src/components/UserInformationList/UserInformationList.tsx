@@ -24,8 +24,8 @@ export default function UserInformationList() {
     }
     return hideWord;
   };
-  const dataPass = userLogged.UserManage.user.password
-    ? hidePassword(userLogged.UserManage.user.password)
+  const dataPass = userLogged.UserManage.user?.password
+    ? hidePassword(userLogged.UserManage.user?.password)
     : '';
   return (
     <View style={{backgroundColor: `${theme.colors.white}`}}>
@@ -46,7 +46,7 @@ export default function UserInformationList() {
         data={dataPass}
         arrowIcon={faChevronRight}
         onPress={() =>
-          console.log('La password è ', userLogged.UserManage.user.password)
+          console.log('La password è ', userLogged.UserManage.user?.password)
         }
       />
     </View>
