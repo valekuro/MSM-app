@@ -7,12 +7,16 @@ import {StyleSheet, View, Text} from 'react-native';
 import EmptySection from '../EmptySection';
 import theme from '../Theme';
 import {useNavigation} from '@react-navigation/native';
-import {faMinus, faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import {
+  faMinus,
+  faChevronRight,
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import {isEmpty} from 'lodash';
 import {useAppDispatch, useAppSelector} from '../../store/hook';
 import SingleItemList from '../SingleItemList';
 import TapIcons from '../TapIcons';
-import {removeElement} from '../../reducers/RedList';
+import {addElement, removeElement} from '../../reducers/RedList';
 /**
  * WIP -- List section
  * @returns
@@ -32,17 +36,19 @@ export default function List() {
           onPress={() => navigation.navigate('Catalogo')}
         />
       )}
-       {Object.keys(listState.list).length !== 0 ? (
+      {Object.keys(listState.list).length !== 0 ? (
         listState.list.map((el: object, key: number) => {
           return (
             <View key={key}>
               <SingleItemList
                 startImageAdornment={el.image}
                 data={el.title}
-                otherData={el.quantita.toString()}
-                textUnderArrow={`€ ${el.prezzo}`}
+                otherData={`quantità: ${el.quantita.toString()} \nprezzo: € ${el.prezzo}`}
+                //textUnderArrow={`€ ${el.prezzo}`}
                 arrowIcon={faMinus}
                 cartIconVisibility={false}
+                secondaryIcon={faPlus}
+                onPressSecondaryIcon={() => dispatch(addElement(el))}
                 onPress={() => dispatch(removeElement(el.title))}
               />
             </View>

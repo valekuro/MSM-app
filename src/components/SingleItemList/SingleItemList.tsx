@@ -23,11 +23,16 @@ interface SingleItemMenuListProps {
   startImageAdornment?: any | undefined;
   data: string | undefined;
   otherData?: string;
-  arrowIcon?: any;
+  arrowIcon?: IconDefinition | undefined;
+  secondaryIcon?: IconDefinition | undefined;
   colorAdornment?: string;
   cartIconVisibility?: boolean;
   textUnderArrow?: string;
   onPress: ((event: GestureResponderEvent) => void) | null | undefined;
+  onPressSecondaryIcon?:
+    | ((event: GestureResponderEvent) => void)
+    | null
+    | undefined;
 }
 /**
  *  the component manages the single list's item.
@@ -41,6 +46,8 @@ interface SingleItemMenuListProps {
  * @param cartIconVisibility -- icon cart visibility
  * @param onPress -- event
  * @param textUnderArrow -- if you want a word under the arrow (or other) icon on the right
+ * @param secondaryIcon
+ * @param onPressSecondaryIcon
  * @returns
  */
 export default function SingleItemList({
@@ -53,6 +60,8 @@ export default function SingleItemList({
   startImageAdornment,
   cartIconVisibility,
   textUnderArrow,
+  secondaryIcon,
+  onPressSecondaryIcon,
   onPress,
 }: SingleItemMenuListProps) {
   const [isTapped, setIsTapped] = useState<boolean>(false);
@@ -81,7 +90,7 @@ export default function SingleItemList({
           <MyText children={data} />
           {otherData ? <MyText children={otherData} /> : null}
         </View>
-        {cartIconVisibility &&(
+        {cartIconVisibility && (
           <View style={{flex: 1}}>
             <TapIcons
               fullIcon={faTasks}
@@ -91,14 +100,30 @@ export default function SingleItemList({
             />
           </View>
         )}
-        <View>
+        <View
+          style={{
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+          }}>
+          {textUnderArrow ? <MyText children={textUnderArrow} /> : null}
+
+          {secondaryIcon && (
+            <View style={{marginRight: 80}}>
+              <TapIcons
+                fullIcon={secondaryIcon}
+                emptyIcon={secondaryIcon}
+                isTapped={true}
+                onPress={onPressSecondaryIcon}
+              />
+            </View>
+          )}
           {arrowIcon && (
             <FontAwesomeIcon
               icon={arrowIcon}
+              size={25}
               style={{color: `${theme.colors.darkOrange}`}}
             />
           )}
-          {textUnderArrow ? <MyText children={textUnderArrow} /> : null}
         </View>
       </View>
     </Pressable>

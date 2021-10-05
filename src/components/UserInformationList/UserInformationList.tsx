@@ -16,7 +16,6 @@ import {useAppSelector} from '../../store/hook';
  */
 export default function UserInformationList() {
   const userLogged: Array<object> = useAppSelector(state => state);
-  console.log(userLogged.UserManage.user);
   //find user by email
   const findByEmail = (email: string) => {
     const loggedUserData = users.find(userItem => (userItem.email = email));
@@ -33,7 +32,6 @@ export default function UserInformationList() {
   const dataPass = userLogged.UserManage.user.password
     ? hidePassword(userLogged.UserManage.user.password)
     : '';
-  console.log(userLogged.UserManage.user.name);
   return (
     <View style={{backgroundColor: `${theme.colors.white}`}}>
       <SingleItemList
