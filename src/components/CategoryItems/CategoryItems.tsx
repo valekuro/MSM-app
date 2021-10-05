@@ -35,7 +35,7 @@ export default function CategoryItems(data: Array<any>) {
                   cartIconVisibility={true}
                   onPress={() =>
                     navigation.navigate('Dettagli', {
-                      screen: 'Catalog',
+                      screen: 'Catalogo',
                       params: el,
                     })
                   }

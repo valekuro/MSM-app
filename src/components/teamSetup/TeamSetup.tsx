@@ -20,7 +20,7 @@ export default function TeamSetup() {
       screenOptions={({route}) => ({
         tabBarIcon: ({focused}) => {
           switch (route.name) {
-            case 'Catalog':
+            case 'Catalogo':
               return (
                 <FontAwesomeIcon
                   icon={faSearch}
@@ -78,7 +78,7 @@ export default function TeamSetup() {
         }}
       />
       <Tab.Screen
-        name="Catalog"
+        name="Catalogo"
         component={Catalog}
         options={{
           headerStyle: {

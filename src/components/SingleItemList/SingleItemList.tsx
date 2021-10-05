@@ -31,16 +31,16 @@ interface SingleItemMenuListProps {
 }
 /**
  *  the component manages the single list's item.
- * @param label
- * @param data
- * @param otherData
- * @param arrowIcon
- * @param startIconAdornment
- * @param colorAdornment
- * @param startImageAdornment
- * @param cartIconVisibility
- * @param onPress
- * @param textUnderArrow
+ * @param label -- words on the left side in gray
+ * @param data -- other data on the left sie in black
+ * @param otherData -- word under data in black
+ * @param arrowIcon -- arrow icon (or another icon) in the right side
+ * @param startIconAdornment -- instead of label or image you could need a fontawesome icon in the left side
+ * @param colorAdornment -- icon color
+ * @param startImageAdornment -- instead of fontawesome icon or label you could need an image in the left side
+ * @param cartIconVisibility -- icon cart visibility
+ * @param onPress -- event
+ * @param textUnderArrow -- if you want a word under the arrow (or other) icon on the right
  * @returns
  */
 export default function SingleItemList({

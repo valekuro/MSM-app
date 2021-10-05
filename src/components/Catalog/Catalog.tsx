@@ -33,7 +33,7 @@ export default function Catalog() {
                 arrowIcon={faChevronRight}
                 onPress={() =>
                   navigation.navigate('Prodotti', {
-                    screen: 'Catalog',
+                    screen: 'Catalogo',
                     params: listFavState.list,
                   })
                 }
@@ -49,7 +49,7 @@ export default function Catalog() {
               arrowIcon={faChevronRight}
               onPress={() =>
                 navigation.navigate('Prodotti', {
-                  screen: 'Catalog',
+                  screen: 'Catalogo',
                   params: category.subCategories,
                 })
               }

@@ -29,7 +29,7 @@ export default function List() {
           data={'Aggiungi prodotto alla lista'}
           arrowIcon={faChevronRight}
           cartIconVisibility={false}
-          onPress={() => navigation.navigate('Catalog')}
+          onPress={() => navigation.navigate('Catalogo')}
         />
       )}
        {Object.keys(listState.list).length !== 0 ? (
@@ -56,7 +56,7 @@ export default function List() {
             iconLabel={`Non è presente nessuna lista creata.\nScegli un'azione.`}
             dimension={220}
             primaryButtonDisabled={false}
-            onPressPrimaryButton={() => navigation.navigate('Catalog')}
+            onPressPrimaryButton={() => navigation.navigate('Catalogo')}
             showSecondaryButton={true}
             secondaryButtonLabel={'Usa ultima lista bloccata'}
             secondaryButtonDisabled={true}
