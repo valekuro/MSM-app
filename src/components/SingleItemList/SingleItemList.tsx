@@ -118,10 +118,11 @@ export default function SingleItemList({
             </View>
           )}
           {arrowIcon && (
-            <FontAwesomeIcon
-              icon={arrowIcon}
-              size={25}
-              style={{color: `${theme.colors.darkOrange}`}}
+            <TapIcons
+              fullIcon={arrowIcon}
+              emptyIcon={arrowIcon}
+              isTapped={true}
+              onPress={onPress}
             />
           )}
         </View>
