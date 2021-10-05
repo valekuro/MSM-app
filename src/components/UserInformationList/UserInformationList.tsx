@@ -4,7 +4,6 @@
  */
 import React from 'react';
 import {View} from 'react-native';
-import {users} from '../../utils/data';
 import SingleItemList from '../SingleItemList';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import theme from '../Theme';
@@ -16,11 +15,7 @@ import {useAppSelector} from '../../store/hook';
  */
 export default function UserInformationList() {
   const userLogged: Array<object> = useAppSelector(state => state);
-  //find user by email
-  const findByEmail = (email: string) => {
-    const loggedUserData = users.find(userItem => (userItem.email = email));
-    return loggedUserData;
-  };
+
   const hidePassword = (word: string) => {
     const wordLenght: number = word.length;
     let hideWord: string = '';
