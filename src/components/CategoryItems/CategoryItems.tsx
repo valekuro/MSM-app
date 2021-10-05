@@ -25,20 +25,22 @@ export default function CategoryItems(data: Array<any>) {
         itemData.map((el: any, key: number) => {
           return (
             <View key={key}>
-              <SingleItemList
-                key={key}
-                startImageAdornment={el.image}
-                data={el.title}
-                otherData={`€ ${el.prezzo}`}
-                arrowIcon={faChevronRight}
-                cartIconVisibility={true}
-                onPress={() =>
-                  navigation.navigate('Dettagli', {
-                    screen: 'Catalog',
-                    params: el,
-                  })
-                }
-              />
+              {el.title !== undefined && (
+                <SingleItemList
+                  key={key}
+                  startImageAdornment={el.image}
+                  data={el.title}
+                  otherData={`€ ${el.prezzo}`}
+                  arrowIcon={faChevronRight}
+                  cartIconVisibility={true}
+                  onPress={() =>
+                    navigation.navigate('Dettagli', {
+                      screen: 'Catalog',
+                      params: el,
+                    })
+                  }
+                />
+              )}
             </View>
           );
         })

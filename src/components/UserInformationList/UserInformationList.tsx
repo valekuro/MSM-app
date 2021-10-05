@@ -18,6 +18,17 @@ export default function UserInformationList() {
     const loggedUserData = users.find(userItem => (userItem.email = email));
     return loggedUserData;
   };
+  const hidePassword = (word: string) => {
+    const wordLenght: number = word.length;
+    let hideWord: string = '';
+    for (let i = 0; i < wordLenght; i++) {
+      hideWord = hideWord.concat('*');
+    }
+    return hideWord;
+  };
+  const dataPass = findByEmail('valentina.dorazio@example.com')
+    ? hidePassword(findByEmail('valentina.dorazio@example.com').password)
+    : '';
 
   return (
     <View style={{backgroundColor: `${theme.colors.white}`}}>
@@ -35,9 +46,14 @@ export default function UserInformationList() {
       />
       <SingleItemList
         label={'Password'}
-        data={findByEmail('valentina.dorazio@example.com')?.password}
+        data={dataPass}
         arrowIcon={faChevronRight}
-        onPress={() => console.log('password')}
+        onPress={() =>
+          console.log(
+            'La password è ',
+            findByEmail('valentina.dorazio@example.com')?.password,
+          )
+        }
       />
     </View>
   );

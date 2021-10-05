@@ -11,7 +11,7 @@ export const RedList = createSlice({
       );
       //add quantity or add element?
       if (AddQuantity === undefined) {
-        state.list.push({...action.payload, quantita: 1, like: false});
+        state.list.push({...action.payload, quantita: 1});
       } else {
         const newState = filterNotEqualTo(
           state.list,
