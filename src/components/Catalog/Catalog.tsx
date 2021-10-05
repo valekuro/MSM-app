@@ -9,7 +9,7 @@ import {categories} from '../../utils/data';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
 import theme from '../Theme';
-import {useAppDispatch, useAppSelector} from '../../store/hook';
+import { useAppSelector} from '../../store/hook';
 
 /**
  * This component returns the categories list.

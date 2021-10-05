@@ -3,24 +3,50 @@
  * year: 2021
  */
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, ImageBackground} from 'react-native';
-import {faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
+import {View, StyleSheet, Text, ImageBackground, Alert} from 'react-native';
+import {
+  faEnvelope,
+  faLock,
+  faDoorOpen,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 import Input from '../Input';
 import theme from '../Theme';
 import PersonalizedButton from '../PersonalizedButton';
 import {useNavigation} from '@react-navigation/native';
 import MyText from '../MyText';
 import TapIcons from '../TapIcons';
-import {faDoorOpen} from '@fortawesome/free-solid-svg-icons';
+import {useAppDispatch} from '../../store/hook';
+import {addUser} from '../../reducers/UserManage';
+
 /**
  * Login section
- * @returns 
+ * @returns
  */
 export default function Login() {
   const [user, setUser] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isTapped, setIsTapped] = useState<boolean>(false);
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
+
+  const handleOnPressButton = () => {
+    if (user && password) {
+      dispatch(
+        addUser({
+          name: user,
+          email: email,
+          password: password,
+        }),
+      );
+      navigation.navigate('Settings');
+    } else {
+      Alert.alert('Attezione:', "Devi compilare tutti i campi per continuare", [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ]);
+    }
+  };
   return (
     <ImageBackground
       source={require('../../assets/images/spesa1.png')}
@@ -35,21 +61,28 @@ export default function Login() {
           <Input
             state={user}
             setState={setUser}
-            placeholder={'Email'}
+            placeholder={'Nome * '}
+            icon={faUser}
+            secure={false}
+          />
+          <Input
+            state={email}
+            setState={setEmail}
+            placeholder={'Email * '}
             icon={faEnvelope}
             secure={false}
           />
           <Input
             state={password}
             setState={setPassword}
-            placeholder={'Password'}
+            placeholder={'Password * '}
             icon={faLock}
             secure={true}
           />
           <View style={{marginTop: 45}}>
             <PersonalizedButton
               label={'Registrati'}
-              onPress={() => navigation.navigate('Settings')}
+              onPress={() => handleOnPressButton()}
               disabled={false}
             />
           </View>
