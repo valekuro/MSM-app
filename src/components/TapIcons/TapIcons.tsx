@@ -1,5 +1,5 @@
 /**
- * author: Valentina D'Orazio
+ * @author: Valentina D'Orazio
  * year: 2021
  */
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
