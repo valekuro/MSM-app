@@ -36,6 +36,8 @@ interface SingleItemMenuListProps {
     | null
     | undefined;
   onPressCartIcon?: ((event: GestureResponderEvent) => void) | null | undefined;
+  onPressDelete?: ((event: GestureResponderEvent) => void) | null | undefined;
+  deleteIcon?: IconDefinition | undefined;
 }
 /**
  *  the component manages the single list's item.
@@ -72,6 +74,8 @@ export default function SingleItemList({
   onPressSecondaryIcon,
   onPress,
   onPressCartIcon,
+  deleteIcon,
+  onPressDelete,
 }: SingleItemMenuListProps) {
   const [isTapped, setIsTapped] = useState<boolean>(false);
 
@@ -117,12 +121,22 @@ export default function SingleItemList({
           {textUnderArrow ? <MyText children={textUnderArrow} /> : null}
 
           {secondaryIcon && (
-            <View style={{marginRight: 80}}>
+            <View style={{marginRight: 30}}>
               <TapIcons
                 fullIcon={secondaryIcon}
                 emptyIcon={secondaryIcon}
                 isTapped={true}
                 onPress={onPressSecondaryIcon}
+              />
+            </View>
+          )}
+          {deleteIcon && (
+            <View style={{marginRight: 30}}>
+              <TapIcons
+                fullIcon={deleteIcon}
+                emptyIcon={deleteIcon}
+                isTapped={true}
+                onPress={onPressDelete}
               />
             </View>
           )}

@@ -11,12 +11,13 @@ import {
   faMinus,
   faChevronRight,
   faPlus,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import {isEmpty} from 'lodash';
 import {useAppDispatch, useAppSelector} from '../../store/hook';
 import SingleItemList from '../SingleItemList';
 import TapIcons from '../TapIcons';
-import {addElement, removeElement} from '../../reducers/RedList';
+import {addElement, deleteElement, removeElement} from '../../reducers/RedList';
 /**
  * WIP -- List section
  * @returns
@@ -43,12 +44,16 @@ export default function List() {
               <SingleItemList
                 startImageAdornment={el.image}
                 data={el.title}
-                otherData={`quantità: ${el.quantita.toString()} \nprezzo: € ${el.prezzo}`}
+                otherData={`quantità: ${el.quantita.toString()} \nprezzo: € ${
+                  el.prezzo
+                }`}
                 arrowIcon={faMinus}
                 cartIconVisibility={false}
                 secondaryIcon={faPlus}
                 onPressSecondaryIcon={() => dispatch(addElement(el))}
                 onPress={() => dispatch(removeElement(el.title))}
+              /*   onPressDelete={() => dispatch(deleteElement(el.title))}
+                deleteIcon={faTrash} */
               />
             </View>
           );

@@ -13,7 +13,7 @@ export const RedList = createSlice({
       if (AddQuantity === undefined) {
         state.list.push({...action.payload, quantita: 1});
       } else {
-        const newState = filterNotEqualTo(
+        /* const newState = filterNotEqualTo(
           state.list,
           action.payload.title,
           'title',
@@ -21,8 +21,13 @@ export const RedList = createSlice({
         newState.push({
           ...action.payload,
           quantita: AddQuantity.quantita + 1,
+        }); */
+        state.list.map(el => {
+          if (el === AddQuantity) {
+            return (el.quantita = AddQuantity.quantita + 1);
+          }
         });
-        state.list = newState;
+        // state.list = newState;
       }
     },
     removeElement: (state, action) => {
@@ -38,8 +43,17 @@ export const RedList = createSlice({
         state.list = newState;
       }
     },
+    deleteElement: (state, action) => {
+      let newState;
+      const itemToDelete = state.list.filter(
+        (item: object) => item.title === action.payload,
+      );
+      //remove element
+      newState = filterNotEqualTo(state.list, action.payload, 'title');
+      state.list = newState;
+    },
   },
 });
 
-export const {addElement, removeElement} = RedList.actions;
+export const {addElement, removeElement, deleteElement} = RedList.actions;
 export default RedList.reducer;
