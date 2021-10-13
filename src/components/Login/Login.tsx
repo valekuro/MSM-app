@@ -24,9 +24,9 @@ import {addUser} from '../../reducers/UserManage';
  * @returns
  */
 export default function Login() {
-  const [user, setUser] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [user, setUser] = useState<string>('Valentina');
+  const [email, setEmail] = useState<string>('valentina@example.com');
+  const [password, setPassword] = useState<string>('password');
   const [isTapped, setIsTapped] = useState<boolean>(false);
   const navigation = useNavigation();
   const dispatch = useAppDispatch();

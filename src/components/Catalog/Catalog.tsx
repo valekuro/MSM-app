@@ -2,14 +2,14 @@
  * @author: Valentina D'Orazio
  * year: 2021
  */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
 import SingleItemList from '../SingleItemList';
 import {categories} from '../../utils/data';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
 import theme from '../Theme';
-import { useAppSelector} from '../../store/hook';
+import {useAppSelector} from '../../store/hook';
 
 /**
  * This component returns the categories list.
@@ -17,15 +17,18 @@ import { useAppSelector} from '../../store/hook';
  */
 export default function Catalog() {
   const navigation = useNavigation();
-  const listFavState: Array<object> = useAppSelector(
-    state => state.FavouriteList,
-  );
+  let listFavState: Array<object> = [];
+  listFavState = useAppSelector(state => state.FavouriteList);
+  const [state, setState] = useState<boolean>(false);
+  useEffect(() => {
+    listFavState.list.length !== 0 ? setState(true) : setState(false);
+  }, [listFavState]);
   return (
     <ScrollView style={catalogStyles.catalogContainer}>
       {categories.map((category: any, key: number) => {
         if (category.title === 'Preferiti') {
           return (
-            listFavState.list.length !== 0 && (
+            state && (
               <SingleItemList
                 key={key}
                 startImageAdornment={category.categoryImage}

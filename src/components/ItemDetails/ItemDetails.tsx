@@ -3,24 +3,29 @@
  * year: 2021
  */
 import React, {useState, useEffect} from 'react';
-import {View, Image, StyleSheet, Text} from 'react-native';
+import {View, Image, StyleSheet, Button} from 'react-native';
 import MyText from '../MyText';
 import PersonalizedButton from '../PersonalizedButton';
 import TapIcons from '../TapIcons';
 import theme from '../Theme';
 import {faClipboardCheck} from '@fortawesome/free-solid-svg-icons';
-import {faHeart as fullHeart} from '@fortawesome/free-solid-svg-icons';
+import {
+  faHeart as fullHeart,
+  faArrowLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import {faHeart as emptyHeart} from '@fortawesome/free-regular-svg-icons';
 import {useAppDispatch, useAppSelector} from '../../store/hook';
 import {addElement} from '../../reducers/RedList';
 import {useNavigation} from '@react-navigation/native';
 import {addFavourite, removeFavourite} from '../../reducers/FavouriteList';
+import GoBackBar from '../GoBackBar';
 
 /**
  * item details component
  * @param data -- data referred to a single item
  * @returns
  */
+
 export default function ItemDetails(data: Array<any>) {
   const itemData: Array<any> = data.route.params.params;
   const [isTapped, setIsTapped] = useState<boolean>(false);
@@ -55,6 +60,21 @@ export default function ItemDetails(data: Array<any>) {
 
   return (
     <View style={{flex: 1, justifyContent: 'space-evenly'}}>
+      {/*    <GoBackBar
+        label={itemData.title}
+        onPress={() =>
+          navigation.navigate('Prodotti', {
+            screen: 'Catalogo',
+            params: listState.list,
+          })
+        }
+        icon={faArrowLeft}
+      /> */}
+      <GoBackBar
+        label={itemData.title}
+        onPress={() => navigation.goBack()}
+        icon={faArrowLeft}
+      />
       <View style={itemDetailsStyles.imageItemDetailsContainer}>
         <Image
           source={itemData.image}

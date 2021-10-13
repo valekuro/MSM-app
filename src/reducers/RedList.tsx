@@ -13,21 +13,11 @@ export const RedList = createSlice({
       if (AddQuantity === undefined) {
         state.list.push({...action.payload, quantita: 1});
       } else {
-        /* const newState = filterNotEqualTo(
-          state.list,
-          action.payload.title,
-          'title',
-        );
-        newState.push({
-          ...action.payload,
-          quantita: AddQuantity.quantita + 1,
-        }); */
         state.list.map(el => {
           if (el === AddQuantity) {
             return (el.quantita = AddQuantity.quantita + 1);
           }
         });
-        // state.list = newState;
       }
     },
     removeElement: (state, action) => {

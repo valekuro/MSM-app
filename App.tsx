@@ -22,7 +22,7 @@ type RootStackParamList = {
   Prodotti: {data: any[]};
   Login: undefined;
   Settings: undefined;
-  Dettagli: undefined;
+  Dettagli: {data: any[]};
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -55,9 +55,7 @@ const App = () => {
             name="Dettagli"
             component={ItemDetails}
             options={{
-              headerStyle: {
-                backgroundColor: theme.colors.lightOrange,
-              },
+              headerShown: false,
             }}
           />
         </Stack.Navigator>
